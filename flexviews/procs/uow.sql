@@ -1,4 +1,4 @@
-
+DELIMITER ;;
 /*  Flexviews for MySQL 
     Copyright 2008 Justin Swanhart
 
@@ -17,8 +17,6 @@
     the GPL (the LGPL) in COPYING.LESSER.
     If not, see <http://www.gnu.org/licenses/>.
 */
-
-DELIMITER ;;
 
 DROP FUNCTION IF EXISTS flexviews.uow_from_dtime;;
 

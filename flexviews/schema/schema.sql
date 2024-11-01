@@ -18,7 +18,7 @@
 */
 set @_storage_engine = @storage_engine;
 
-set storage_engine = coalesce( (select engine from information_schema.engines where engine='InnoDB'), (select engine from information_schema.engines where engine='TokuDB'), (select engine from information_schema.engines where engine='MyISAM') ) ; 
+set default_storage_engine = coalesce( (select engine from information_schema.engines where engine='InnoDB'), (select engine from information_schema.engines where engine='TokuDB'), (select engine from information_schema.engines where engine='MyISAM') ) ; 
 
 DROP TABLE IF EXISTS `mview`;
 CREATE TABLE `mview` (
@@ -55,7 +55,7 @@ DEFAULT CHARSET=utf8;
 CREATE TABLE IF NOT EXISTS flexviews.refresh_step_info(
   mview_id int(11) not null PRIMARY KEY,
   last_step varchar(255) not null, 
-  last_step_at TIMESTAMP NOT NULL
+  last_step_at TIMESTAMP DEFAULT NULL
 ) DEFAULT CHARSET=UTF8
 ENGINE=MYISAM;
 

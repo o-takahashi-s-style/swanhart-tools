@@ -495,7 +495,7 @@ EOREGEX
 		
 			#find the current master position
 			#$stmt = my_mysql_query('FLUSH TABLES WITH READ LOCK', $this->source) or die1(mysqli_error($this->source));
-			$stmt = my_mysql_query('SHOW MASTER STATUS', $this->source) or die1(mysqli_error($this->source));
+			$stmt = my_mysql_query('SHOW BINARY LOG STATUS', $this->source) or die1(mysqli_error($this->source));
 			$row = mysqli_fetch_assoc($stmt);
 			$stmt = my_mysql_query('UNLOCK TABLES', $this->source) or die1(mysqli_error($this->source));
 			$this->initialize();
@@ -1252,6 +1252,7 @@ EOREGEX
 				$line = trim(fgets($proc));
 			}
 			#if(preg_match('/^Warning: /', $line)) { continue; }
+			if($line == '') { continue; }
 
 			#echo "-- $line\n";
 			#It is faster to check substr of the line than to run regex
